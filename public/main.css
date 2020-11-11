@@ -50,3 +50,12 @@
   font-weight: bold;
   color: steelblue;
 }
+.bottom-panel {
+  margin-top: 10px;
+}
+
+.bottom-panel .new-todo-label {
+  width: auto;
+  flex-grow: 1;
+  margin-right: 3px;
+}

@@ -1,18 +1,30 @@
 import React from 'react'
+import Button from './Button'
 
 class ItemStatusFilter extends React.Component {
+  state = {
+    active: 'All',
+  }
+  onChangeStatusFilter = (type) => {
+    this.setState(() => ({ active: type }))
+    this.props.statusFilter(type)
+  }
+  // btn-outline-secondary btn-info
   render() {
+    const buttonType = ['All', 'Active', 'Done']
+    const { active } = this.state
     return (
       <div className="btn-group">
-        <button type="button" className="btn btn-info">
-          All
-        </button>
-        <button type="button" className="btn btn-outline-secondary">
-          Active
-        </button>
-        <button type="button" className="btn btn-outline-secondary">
-          Done
-        </button>
+        {buttonType.map((type, i) => {
+          return (
+            <Button
+              key={type}
+              label={type}
+              className={active === type ? 'btn-info' : 'btn-outline-secondary'}
+              click={() => this.onChangeStatusFilter(type)}
+            />
+          )
+        })}
       </div>
     )
   }

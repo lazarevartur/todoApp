@@ -1,36 +1,26 @@
 import React from 'react'
 
 class ListTodoItem extends React.Component {
-  onLabelClick = () => {
-    this.setState((state) => {
-      return { complete: !state.complete }
-    })
-  }
-  onMarkImportantClick = () => {
-    this.setState((state) => {
-      return { important: !state.important }
-    })
-  }
-
-  state = {
-    complete: false,
-    important: false,
-  }
-
   render() {
-    const { label, onDeletedClick } = this.props
-    const { complete, important } = this.state
+    const {
+      label,
+      important,
+      done,
+      onDoneClick,
+      onDeletedClick,
+      onImportantClick,
+    } = this.props
     const style = {
       color: important ? 'steelBlue' : '',
       fontWeight: important ? 'bold' : 'normal',
     }
-    const classNames = `todo-list-item ${complete ? 'done' : ''}`
+    const classNames = `todo-list-item ${done ? 'done' : ''}`
     return (
       <span className={classNames}>
         <span
           className="todo-list-item-label"
           style={style}
-          onClick={this.onLabelClick}
+          onClick={onDoneClick}
         >
           {label}
         </span>
@@ -38,7 +28,7 @@ class ListTodoItem extends React.Component {
         <button
           type="button"
           className="btn btn-outline-success btn-sm float-right"
-          onClick={this.onMarkImportantClick}
+          onClick={onImportantClick}
         >
           <i className="fa fa-exclamation" />
         </button>
